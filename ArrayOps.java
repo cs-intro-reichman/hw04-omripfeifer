@@ -63,6 +63,7 @@ public class ArrayOps {
         if (!check){
             return false ; 
         }
+        check = false ; 
     }     
         return true ;
     }
