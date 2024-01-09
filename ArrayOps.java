@@ -65,11 +65,11 @@ public class ArrayOps {
         }     
         return true ;
     }
+}
 
     public static boolean isSorted(int [] array) {
         // Write your code here:
         return false;
     }
 
-}
 }
