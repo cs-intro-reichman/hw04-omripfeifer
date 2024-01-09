@@ -62,10 +62,10 @@ public class ArrayOps {
         }
         if (!check){
             return false ; 
-        }     
+        }
+    }     
         return true ;
     }
-}
 
     public static boolean isSorted(int [] array) {
         // Write your code here:
