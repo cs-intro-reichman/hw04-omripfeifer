@@ -47,7 +47,11 @@ public class ArrayOps {
                 check = true ;
             }
         }
-        check = false ;
+        if ( check == false ){
+            return false ; 
+        }
+        check = false ; 
+
        } 
 
        for ( int i = 0 ; i < array2.length ; i++ ){
@@ -56,8 +60,10 @@ public class ArrayOps {
                 check = true ;
             }
         }
-    }     
-        return check ;
+        if (!check){
+            return false ; 
+        }     
+        return true ;
     }
 
     public static boolean isSorted(int [] array) {
