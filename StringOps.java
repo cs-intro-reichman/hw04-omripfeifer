@@ -45,7 +45,7 @@ public class StringOps {
             newStr += chnew;
         }
 
-        return newVowelStr;
+        return newlStr;
     }
 
     public static String camelCase (String string) {
@@ -64,7 +64,7 @@ public class StringOps {
 
             char newCharfinal = newStr1.charAt(j) ;
             char newCharfinal1 = newStr1.charAt( j + 1 ) ; 
-            if (newCharfinal = ' '){
+            if (newCharfinal == ' '){
                 newCharfinal1 -= 32 ;
             finalStr += newCharfinal1 ;
 
