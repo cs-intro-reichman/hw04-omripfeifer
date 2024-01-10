@@ -67,7 +67,7 @@ public class StringOps {
 
             char newCharfinal = newStr1.charAt(j - 1) ;
             char newCharfinal1 = newStr1.charAt( j ) ; 
-            if (newCharfinal == ' ' || newCharfinal1 == ' ' && j != 1 ) {
+            if (newCharfinal == ' ' && j != 1 || newCharfinal1 == ' ' && j != 1 ) {
                 newCharfinal1 -= 32 ;
             } 
             finalStr += newCharfinal1 ;
