@@ -27,7 +27,7 @@ public class StringOps {
     public static String capVowelsLowRest (String string) {
         // Write your code here:
         String newStr = "";
-        String newVowelStr = "";
+        String newBigStr = "";
 
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
@@ -42,10 +42,10 @@ public class StringOps {
             if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
                 chnew -= 32;
             }
-            newVowelStr += chnew;
+            newBigStr += chnew;
         }
 
-        return newVowelStr;
+        return newBigStr;
     }
 
     public static String camelCase (String string) {
@@ -60,7 +60,7 @@ public class StringOps {
             newStr1 += newChar ; 
         } 
 
-        for ( int j = 0 ; j < newStr1.length() ; j++ ){
+        for ( int j = 0 ; j < newStr1.length() - 1 ; j++ ){
 
             char newCharfinal = newStr1.charAt(j) ;
             char newCharfinal1 = newStr1.charAt( j + 1 ) ; 
