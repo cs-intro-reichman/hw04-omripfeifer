@@ -59,19 +59,18 @@ public class StringOps {
             }
             newStr1 += newChar ; 
         } 
+        if (newStr1 != "" ){
+            finalStr += newStr1.charAt(0);
+        }
 
-        for ( int j = 0 ; j < newStr1.length() - 1 ; j++ ){
+        for ( int j = 1 ; j < newStr1.length() ; j++ ){
 
-            char newCharfinal = newStr1.charAt(j) ;
-            char newCharfinal1 = newStr1.charAt( j + 1 ) ; 
-            if (newCharfinal == ' '){
+            char newCharfinal = newStr1.charAt(j - 1) ;
+            char newCharfinal1 = newStr1.charAt( j ) ; 
+            if (newCharfinal == ' ' || newCharfinal1 == ' ') {
                 newCharfinal1 -= 32 ;
+            } 
             finalStr += newCharfinal1 ;
-
-            } else {
-                finalStr += newCharfinal ; 
-            }
-
         }
 
         return finalStr;
