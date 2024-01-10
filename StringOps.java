@@ -1,7 +1,7 @@
 public class StringOps {
     ////////////////////////////////////////////////////////////
     //////                                               ///////
-    //////                Reminder:                        ///////
+    //////                Reminder:                      ///////
     //////        allowed methods                        ///////
     //////                                               ///////
     //////        1.charAt(int index)                    ///////
@@ -23,10 +23,30 @@ public class StringOps {
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
         
-    }
 
     public static String capVowelsLowRest (String string) {
         // Write your code here:
+        String newStr = "";
+        String newVowelStr = "";
+
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                ch += 32;
+            }
+            newStr += ch;
+        }
+
+        for (int j = 0; j < newStr.length(); j++) {
+            char chnew = newStr.charAt(j);
+            if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
+                chnew -= 32;
+            }
+            newVowelStr += chnew;
+        }
+
+        return newVowelStr;
+    }
         return "";
     }
 
