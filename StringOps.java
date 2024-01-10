@@ -26,30 +26,27 @@ public class StringOps {
 
     public static String capVowelsLowRest (String string) {
         // Write your code here:
-    String newStr1 = "";
-    String finalStr = "";
+        String newStr = "";
+        String newBigStr = "";
 
-    boolean capitalizeNext = true;
-
-    for (int i = 0; i < string.length(); i++) {
-        char newChar = string.charAt(i);
-        if (newChar >= 'A' && newChar <= 'Z') {
-            newChar += 32;
-        }
-
-        if (newChar == ' ') {
-            capitalizeNext = true;
-        } else {
-            if (capitalizeNext) {
-                newChar -= 32;
-                capitalizeNext = false;
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                ch += 32;
             }
-            finalStr += newChar;
+            newStr += ch;
         }
-    }
 
-    return finalStr;
-}
+        for (int j = 0; j < newStr.length(); j++) {
+            char chnew = newStr.charAt(j);
+            if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
+                chnew -= 32;
+            }
+            newBigStr += chnew;
+        }
+
+        return newBigStr;
+    }
 
     public static String camelCase (String string) {
         String newStr1 = "" ;
