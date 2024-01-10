@@ -37,7 +37,7 @@ public class StringOps {
             alllow += ch;
         }
 
-        for (int j = 0; j < newStr.length(); j++) {
+        for (int j = 0; j < alllow.length(); j++) {
             char chnew = newStr.charAt(j);
             if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
                 chnew -= 32;
