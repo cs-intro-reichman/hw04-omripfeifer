@@ -45,7 +45,7 @@ public class StringOps {
             newStr += chnew;
         }
 
-        return newlStr;
+        return newStr;
     }
 
     public static String camelCase (String string) {
