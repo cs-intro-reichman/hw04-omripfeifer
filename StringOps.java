@@ -30,22 +30,30 @@ public class StringOps {
         String newBigStr = "";
 
         for (int i = 0; i < string.length(); i++) {
-            char ch = string.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
-                ch += 32;
+            char newChar = string.charAt(i);
+            if (newChar >= 'A' && newChar <= 'Z') {
+                newChar += 32;
             }
-            newStr += ch;
+            newStr1 += newChar;
         }
-
-        for (int j = 0; j < newStr.length(); j++) {
-            char chnew = newStr.charAt(j);
-            if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
-                chnew -= 32;
+    
+        boolean capitalizeNext = true;
+    
+        for (int j = 0; j < newStr1.length(); j++) {
+            char newCharfinal = newStr1.charAt(j);
+    
+            if (newCharfinal == ' ') {
+                capitalizeNext = true;
+            } else {
+                if (capitalizeNext) {
+                    newCharfinal -= 32;
+                    capitalizeNext = false;
+                }
+                finalStr += newCharfinal;
             }
-            newBigStr += chnew;
         }
-
-        return newBigStr;
+    
+        return finalStr;
     }
 
     public static String camelCase (String string) {
