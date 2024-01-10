@@ -26,15 +26,15 @@ public class StringOps {
 
     public static String capVowelsLowRest (String string) {
         // Write your code here:
+        String alllow = "";
         String newStr = "";
-        String newVowelStr = "";
 
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
             if (ch >= 'A' && ch <= 'Z') {
                 ch += 32;
             }
-            newStr += ch;
+            alllow += ch;
         }
 
         for (int j = 0; j < newStr.length(); j++) {
@@ -42,15 +42,39 @@ public class StringOps {
             if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
                 chnew -= 32;
             }
-            newVowelStr += chnew;
+            newStr += chnew;
         }
 
         return newVowelStr;
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        String newStr1 = "" ;
+        String finalStr = "" ; 
+
+        for ( int i = 0 ; i < string.length() ; i++ ){
+            char newChar = string.charAt(i) ;
+            if ( newChar >= 'A' && newChar <= 'Z' ){
+                newChar += 32; 
+            }
+            newStr1 += newChar ; 
+        } 
+
+        for ( int j = 0 ; j < newStr1.length() ; j++ ){
+
+            char newCharfinal = newStr1.charAt(j) ;
+            char newCharfinal1 = newStr1.charAt( j + 1 ) ; 
+            if (newCharfinal = ' '){
+                newCharfinal1 -= 32 ;
+            finalStr += newCharfinal1 ;
+
+            } else {
+                finalStr += newCharfinal ; 
+            }
+
+        }
+
+        return finalStr;
     }
 
     public static int[] allIndexOf (String string, char chr) {
