@@ -87,7 +87,7 @@ public class StringOps {
         int current = 0 ; 
         for (int i = 0 ; i < string.length(); i++ ){
             if (string.charAt(i) == chr ){
-                index[current] = i ;
+                indx[current] = i ;
                 current++ ;
             }
         }
