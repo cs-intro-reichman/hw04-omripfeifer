@@ -18,59 +18,82 @@ public class ArrayOps {
     }
 
     public static int secondMaxValue(int [] array) {
-        int maxValue = 0 ; 
-        int secondMaxValue = 0 ; 
-        if ( array[0] >= array[1]){
-            maxValue = array[0] ;
-            secondMaxValue = array[1] ;
-        } else {
-            maxValue = array[1] ;
-            secondMaxValue = array[0] ;
+        int max = 0;
+        int second_max = 0;
+
+        if (array[0] >= array[1]) {
+            max = array[0];
+            second_max = array[1];
         }
-        for ( int i = 2 ; i <  array.length ; i++ ){
-            if ( array[i] > secondMaxValue && array[i] < maxValue ){
-                 secondMaxValue = array[i] ;
-            } else if ( array[i] >= maxValue){
-                secondMaxValue = maxValue ;
-                maxValue = array[i];
+
+        else {
+            max = array[1];
+            second_max = array[0];
+        }
+
+        for (int i = 2; i<array.length; i++) {
+            if (array[i] > second_max && array[i] < max) {
+                second_max = array[i];
+            }
+            
+            if (array[i] >= max) {
+                second_max = max;
+                max = array[i];
             }
         }
-        return secondMaxValue ;
+
+        return second_max;
     }
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
-      boolean check = false ;
+        boolean check = false;
 
-       for ( int i = 0 ; i < array1.length ; i++ ){
-        for ( int j = 0 ; j < array2.length ; j++){
-            if ( array1[i] == array2[j]){
-                check = true ;
+        for (int i = 0; i < array1.length; i++) {
+            for (int j = 0; j < array2.length; j++) {
+                if (array1[i] == array2[j]) {
+                    check = true;
+                }
             }
-        }
-        if ( check == false ){
-            return false ; 
-        }
-        check = false ; 
-
-       } 
-
-       for ( int i = 0 ; i < array2.length ; i++ ){
-        for ( int j = 0 ; j < array1.length ; j++){
-            if ( array1[i] == array2[j]){
-                check = true ;
+            if (!check) {
+                return false;
             }
+            check = false;
         }
-        if (!check){
-            return false ; 
-        }
-        check = false ; 
-    }     
-        return true ;
+
+        for (int j = 0; j < array2.length; j++) {
+            for (int i = 0; i < array2.length; i++) {
+                if (array1[i] == array2[j]) {
+                    check = true;
+                }
+            }
+            if (!check) {
+                return false;
+            }
+            check = false;
+            }
+        return true;
     }
-
     public static boolean isSorted(int [] array) {
-        // Write your code here:
+        boolean increasing = true;
+        boolean decreasing = true;
+
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] > array [i+1]) {
+                decreasing = false;
+            }
+
+            if (array[i] < array [i+1]) {
+                increasing = false;
+            }
+        }
+
+        if (increasing) {
+            return true;
+        }
+
+        if (decreasing) {
+            return true;
+        }
         return false;
     }
-
 }
