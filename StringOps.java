@@ -47,8 +47,6 @@ public class StringOps {
 
         return newVowelStr;
     }
-        return "";
-    }
 
     public static String camelCase (String string) {
         // Write your code here:
