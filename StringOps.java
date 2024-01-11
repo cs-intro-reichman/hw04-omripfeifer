@@ -49,7 +49,7 @@ public class StringOps {
     } 
 
 
-    ppublic static String camelCase(String string) {
+    public static String camelCase(String string) {
         String camelCaseString = "";
         boolean startNewWord = false;
         boolean isFirstWord = true;
@@ -98,8 +98,6 @@ public class StringOps {
     
         return camelCaseString;
     }
-
-
 
      public static int[] allIndexOf (String string, char chr) {
         int count = 0 ; 
