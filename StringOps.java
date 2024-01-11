@@ -49,32 +49,28 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        String newStr1 = "" ;
-        String finalStr = "" ; 
-
-        for ( int i = 0 ; i < string.length() ; i++ ){
-            char newChar = string.charAt(i) ;
-            if ( newChar >= 'A' && newChar <= 'Z' ){
-                newChar += 32; 
+        boolean nextUpperCase = false;
+        String camelCaseWord = "";
+    
+        for (int i = 0; i < string.length(); i++) {
+            char currentChar = string.charAt(i);
+    
+            if (currentChar >= 'A' && currentChar <= 'Z') {
+                camelCaseWord += (char) (currentChar + 32);  // Convert uppercase to lowercase
+            } else if (currentChar == ' ') {
+                nextUpperCase = true;
+            } else {
+                if (nextUpperCase) {
+                    camelCaseWord += (char) (currentChar - 32);  // Convert lowercase to uppercase
+                    nextUpperCase = false;
+                } else {
+                    camelCaseWord += currentChar;
+                }
             }
-            newStr1 += newChar ; 
-        } 
-        if (newStr1 != "" ){
-            finalStr += newStr1.charAt(0);
         }
-
-        for ( int j = 1 ; j < newStr1.length() ; j++ ){
-
-            char newCharfinal = newStr1.charAt(j - 1) ;
-            char newCharfinal1 = newStr1.charAt( j ) ; 
-            if (newCharfinal == ' ' && j != 1 || newCharfinal1 == ' ' && j != 1 ) {
-                newCharfinal1 -= 32 ;
-            } 
-            finalStr += newCharfinal1 ;
-        }
-
-        return finalStr;
-    }
+    
+        return camelCaseWord;
+    } 
 
     public static int[] allIndexOf (String string, char chr) {
         int count = 0 ; 
@@ -94,3 +90,4 @@ public class StringOps {
         return indx;
     }
 }
+
