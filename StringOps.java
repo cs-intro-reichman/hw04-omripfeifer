@@ -50,28 +50,28 @@ public class StringOps {
 
 
  public static String camelCase (String string) {
-        boolean nextUpperCase = false;
-        String camelCaseWord = "";
-    
-        for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
-    
-            if (currentChar >= 'A' && currentChar <= 'Z') {
-                camelCaseWord += (char) (currentChar + 32);  // Convert  to lowercase
-            } else if (currentChar == ' ' && i > 0 ) {
-                nextUpperCase = true;
+    boolean nextUpperCase = false;
+    String camelCaseWord = "";
+
+    for (int i = 0; i < string.length(); i++) {
+        char currentChar = string.charAt(i);
+
+        if (currentChar >= 'A' && currentChar <= 'Z') {
+            camelCaseWord += (char) (currentChar + 32);  // Convert uppercase to lowercase
+        } else if (currentChar == ' ') {
+            nextUpperCase = true;
+        } else {
+            if (nextUpperCase) {
+                camelCaseWord += (char) (currentChar - 32) ;  // Convert the first character of each word to uppercase
+                nextUpperCase = false;
             } else {
-                if (nextUpperCase) {
-                    camelCaseWord += (char) (currentChar - 32);  // Convert vowels to uppercase
-                    nextUpperCase = false;
-                } else {
-                    camelCaseWord += currentChar;
-                }
+                camelCaseWord += currentChar;
             }
         }
-    
-        return camelCaseWord;
-    } 
+    }
+
+    return camelCaseWord;
+}
 
 
 
@@ -93,4 +93,4 @@ public class StringOps {
         }
         return indx;
     }
-}
+}   
