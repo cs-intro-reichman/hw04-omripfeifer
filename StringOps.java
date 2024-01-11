@@ -48,29 +48,55 @@ public class StringOps {
         return newBigStr;
     }
 
-    public static String camelCase (String string) {
-        boolean nextUpperCase = false;
-        String camelCaseWord = "";
+    public static String camelCase(String string) {
+        String camelCaseString = "";
+        boolean startNewWord = false;
+        boolean isFirstWord = true;
+        int charInt;
+        char currentChar;
     
         for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
+            charInt = (int) string.charAt(i);
     
-            if (currentChar >= 'A' && currentChar <= 'Z') {
-                camelCaseWord += (char) (currentChar + 32);  // Convert uppercase to lowercase
-            } else if (currentChar == ' ') {
-                nextUpperCase = true;
-            } else {
-                if (nextUpperCase) {
-                    camelCaseWord += (char) (currentChar - 32);  // Convert lowercase to uppercase
-                    nextUpperCase = false;
+            if (string.charAt(i) != ' ') {
+                if (isFirstWord) {
+                    if (charInt < 90 && charInt > 65) {
+                        charInt += 32;
+                    }
+                    currentChar = (char) charInt;
+    
+                    camelCaseString += currentChar;
+    
+                    if ((i < string.length() + 1) && (string.charAt(i + 1) == ' ')) {
+                        isFirstWord = false;
+                    }
                 } else {
-                    camelCaseWord += currentChar;
+                    // Checking if the letter is Caps
+                    if (charInt < 90 && charInt > 65) {
+                        // Caps on new word
+                        if (startNewWord) {
+                            startNewWord = false;
+                        } else {
+                            // Difference in the ASCII table between lower and upper
+                            charInt += 32;
+                        }
+                    } else {
+                        if (startNewWord) {
+                            charInt -= 32;
+                            startNewWord = false;
+                        }
+                    }
+    
+                    currentChar = (char) charInt;
+                    camelCaseString += currentChar;
                 }
+            } else if (!isFirstWord) {
+                startNewWord = true;
             }
         }
     
-        return camelCaseWord;
-    } 
+        return camelCaseString;
+    }
 
     public static int[] allIndexOf (String string, char chr) {
         int count = 0 ; 
