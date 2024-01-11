@@ -28,7 +28,7 @@ public class StringOps {
     public static String capVowelsLowRest (String string) {
         // Write your code here:
         String newStr = "";
-        String newVowelStr = "";
+        String newBigStr = "";
 
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
@@ -43,80 +43,52 @@ public class StringOps {
             if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
                 chnew -= 32;
             }
-            newVowelStr += chnew;
+            newBigStr += chnew;
         }
 
-        return newVowelStr;
-    }
+        return newBigStr;
+    } 
 
-    public static String camelCase(String string) {
-        String camelCaseString = "";
-        boolean startNewWord = false;
-        boolean isFirstWord = true;
-        int charInt;
-        char currentChar;
+    public static String camelCase (String string) {
+        boolean nextUpperCase = false;
+        String camelCaseWord = "";
     
         for (int i = 0; i < string.length(); i++) {
-            charInt = (int) string.charAt(i);
+            char currentChar = string.charAt(i);
     
-            if (string.charAt(i) != ' ') {
-                if (isFirstWord) {
-                    if (charInt < 90 && charInt > 65) {
-                        charInt += 32;
-                    }
-                    currentChar = (char) charInt;
-    
-                    camelCaseString += currentChar;
-    
-                    if ((i < string.length() + 1) && (string.charAt(i + 1) == ' ')) {
-                        isFirstWord = false;
-                    }
+            if (currentChar >= 'A' && currentChar <= 'Z') {
+                camelCaseWord += (char) (currentChar + 32);  // Convert  to lowercase
+            } else if (currentChar == ' ') {
+                nextUpperCase = true;
+            } else {
+                if (nextUpperCase) {
+                    camelCaseWord += (char) (currentChar - 32);  // Convert vowels to uppercase
+                    nextUpperCase = false;
                 } else {
-                    // Checking if the letter is Caps
-                    if (charInt < 90 && charInt > 65) {
-                        // Caps on new word
-                        if (startNewWord) {
-                            startNewWord = false;
-                        } else {
-                            // Difference in the ASCII table between lower and upper
-                            charInt += 32;
-                        }
-                    } else {
-                        if (startNewWord) {
-                            charInt -= 32;
-                            startNewWord = false;
-                        }
-                    }
-    
-                    currentChar = (char) charInt;
-                    camelCaseString += currentChar;
+                    camelCaseWord += currentChar;
                 }
-            } else if (!isFirstWord) {
-                startNewWord = true;
             }
         }
     
-        return camelCaseString;
-    }
+        return camelCaseWord;
+    } 
 
-    public static int[] allIndexOf(String string, char chr) {
-        int indexCount = 0; 
-        for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) == chr) {   
-                indexCount++;
+    public static int[] allIndexOf (String string, char chr) {
+        int count = 0 ; 
+        for (int i = 0 ; i < string.length() ; i++ ) {
+            if ( string.charAt(i) == chr ){
+                count++;
             }
         }
-    
-        int[] indexes = new int[indexCount];
-        int current = 0;
-    
-        for (int i = 0; i < string.length(); i++) {
-            if (string.charAt(i) == chr) {
-                indexes[current] = i;
-                current++;
+        int [] indx = new int [count] ;
+        int current = 0 ; 
+        
+        for (int i = 0 ; i < string.length(); i++ ){
+            if (string.charAt(i) == chr ){
+                indx[current] = i ;
+                current++ ;
             }
         }
-    
-        return indexes;
+        return indx;
     }
 }
