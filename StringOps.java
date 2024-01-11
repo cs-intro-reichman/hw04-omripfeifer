@@ -1,7 +1,7 @@
 public class StringOps {
     ////////////////////////////////////////////////////////////
     //////                                               ///////
-    //////              Reminder:                        ///////
+    //////                Reminder:                      ///////
     //////        allowed methods                        ///////
     //////                                               ///////
     //////        1.charAt(int index)                    ///////
@@ -22,21 +22,99 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
-    }
+    } 
 
     public static String capVowelsLowRest (String string) {
         // Write your code here:
-        return "";
+        String newStr = "";
+        String newBigStr = "";
+
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            if (ch >= 'A' && ch <= 'Z') {
+                ch += 32;
+            }
+            newStr += ch;
+        }
+
+        for (int j = 0; j < newStr.length(); j++) {
+            char chnew = newStr.charAt(j);
+            if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
+                chnew -= 32;
+            }
+            newBigStr += chnew;
+        }
+
+        return newBigStr;
+    } 
+
+
+    public static String camelCase(String string) {
+        String camelCaseString = "";
+        boolean startNewWord = false;
+        boolean isFirstWord = true;
+        int charInt;
+        char currentChar;
+    
+        for (int i = 0; i < string.length(); i++) {
+            charInt = (int) string.charAt(i);
+    
+            if (string.charAt(i) != ' ') {
+                if (isFirstWord) {
+                    if (charInt < 90 && charInt > 65) {
+                        charInt += 32;
+                    }
+                    currentChar = (char) charInt;
+    
+                    camelCaseString += currentChar;
+    
+                    if ((i < string.length() + 1) && (string.charAt(i + 1) == ' ')) {
+                        isFirstWord = false;
+                    }
+                } else {
+                    // Checking if the letter is Caps
+                    if (charInt < 90 && charInt > 65) {
+                        // Caps on new word
+                        if (startNewWord) {
+                            startNewWord = false;
+                        } else {
+                            // Difference in the ASCII table between lower and upper
+                            charInt += 32;
+                        }
+                    } else {
+                        if (startNewWord) {
+                            charInt -= 32;
+                            startNewWord = false;
+                        }
+                    }
+    
+                    currentChar = (char) charInt;
+                    camelCaseString += currentChar;
+                }
+            } else if (!isFirstWord) {
+                startNewWord = true;
+            }
+        }
+    
+        return camelCaseString;
     }
 
-    public static String camelCase (String string) {
-        // Write your code here:
-        return "";
-    }
+     public static int[] allIndexOf (String string, char chr) {
+        int count = 0 ; 
+        for (int i = 0 ; i < string.length() ; i++ ) {
+            if ( string.charAt(i) == chr ){
+                count++;
+            }
+        }
+        int [] indx = new int [count] ;
+        int current = 0 ; 
 
-    public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        for (int i = 0 ; i < string.length(); i++ ){
+            if (string.charAt(i) == chr ){
+                indx[current] = i ;
+                current++ ;
+            }
+        }
+        return indx;
     }
 }
