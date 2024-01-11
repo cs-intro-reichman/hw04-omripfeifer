@@ -49,26 +49,54 @@ public class StringOps {
     } 
 
 
-    public static String camelCase(String string) {
-        boolean capitalizeNext = true;
-        String camelCaseWord = "";
+    ppublic static String camelCase(String string) {
+        String camelCaseString = "";
+        boolean startNewWord = false;
+        boolean isFirstWord = true;
+        int charInt;
+        char currentChar;
     
         for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
+            charInt = (int) string.charAt(i);
     
-            if (currentChar == ' ' && i >0 ) {
-                capitalizeNext = true;
-            } else {
-                if (capitalizeNext) {
-                    camelCaseWord += (char) (currentChar - 32);  // Convert the first character of each word to uppercase
-                    capitalizeNext = false;
+            if (string.charAt(i) != ' ') {
+                if (isFirstWord) {
+                    if (charInt < 90 && charInt > 65) {
+                        charInt += 32;
+                    }
+                    currentChar = (char) charInt;
+    
+                    camelCaseString += currentChar;
+    
+                    if ((i < string.length() + 1) && (string.charAt(i + 1) == ' ')) {
+                        isFirstWord = false;
+                    }
                 } else {
-                    camelCaseWord += currentChar;
+                    // Checking if the letter is Caps
+                    if (charInt < 90 && charInt > 65) {
+                        // Caps on new word
+                        if (startNewWord) {
+                            startNewWord = false;
+                        } else {
+                            // Difference in the ASCII table between lower and upper
+                            charInt += 32;
+                        }
+                    } else {
+                        if (startNewWord) {
+                            charInt -= 32;
+                            startNewWord = false;
+                        }
+                    }
+    
+                    currentChar = (char) charInt;
+                    camelCaseString += currentChar;
                 }
+            } else if (!isFirstWord) {
+                startNewWord = true;
             }
         }
     
-        return camelCaseWord;
+        return camelCaseString;
     }
 
 
