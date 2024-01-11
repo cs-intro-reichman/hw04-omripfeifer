@@ -58,7 +58,7 @@ public class StringOps {
     
             if (currentChar >= 'A' && currentChar <= 'Z') {
                 camelCaseWord += (char) (currentChar + 32);  // Convert  to lowercase
-            } else if (currentChar == ' ') {
+            } else if (currentChar == ' ' && i > 0 ) {
                 nextUpperCase = true;
             } else {
                 if (nextUpperCase) {
