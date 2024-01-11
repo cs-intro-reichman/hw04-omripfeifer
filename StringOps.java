@@ -28,7 +28,7 @@ public class StringOps {
     public static String capVowelsLowRest (String string) {
         // Write your code here:
         String newStr = "";
-        String newBigStr = "";
+        String newVowelStr = "";
 
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
@@ -43,52 +43,80 @@ public class StringOps {
             if (chnew == 'a' || chnew == 'i' || chnew == 'e' || chnew == 'o' || chnew == 'u' ) {
                 chnew -= 32;
             }
-            newBigStr += chnew;
+            newVowelStr += chnew;
         }
 
-        return newBigStr;
-    } 
+        return newVowelStr;
+    }
 
-
-    public static String camelCase (String string) {
-        boolean nextUpperCase = false;
-        String camelCaseWord = "";
+    public static String camelCase(String string) {
+        String camelCaseString = "";
+        boolean startNewWord = false;
+        boolean isFirstWord = true;
+        int charInt;
+        char currentChar;
     
         for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
+            charInt = (int) string.charAt(i);
     
-            if (currentChar >= 'A' && currentChar <= 'Z') {
-                camelCaseWord += (char) (currentChar + 32);  // Convert  to lowercase
-            } else if (currentChar == ' ') {
-                nextUpperCase = true;
-            } else {
-                if (nextUpperCase) {
-                    camelCaseWord += (char) (currentChar - 32);  // Convert vowels to uppercase
-                    nextUpperCase = false;
+            if (string.charAt(i) != ' ') {
+                if (isFirstWord) {
+                    if (charInt < 90 && charInt > 65) {
+                        charInt += 32;
+                    }
+                    currentChar = (char) charInt;
+    
+                    camelCaseString += currentChar;
+    
+                    if ((i < string.length() + 1) && (string.charAt(i + 1) == ' ')) {
+                        isFirstWord = false;
+                    }
                 } else {
-                    camelCaseWord += currentChar;
+                    // Checking if the letter is Caps
+                    if (charInt < 90 && charInt > 65) {
+                        // Caps on new word
+                        if (startNewWord) {
+                            startNewWord = false;
+                        } else {
+                            // Difference in the ASCII table between lower and upper
+                            charInt += 32;
+                        }
+                    } else {
+                        if (startNewWord) {
+                            charInt -= 32;
+                            startNewWord = false;
+                        }
+                    }
+    
+                    currentChar = (char) charInt;
+                    camelCaseString += currentChar;
                 }
+            } else if (!isFirstWord) {
+                startNewWord = true;
             }
         }
     
-        return camelCaseWord;
-    } 
+        return camelCaseString;
+    }
 
-    public static int[] allIndexOf (String string, char chr) {
-        int count = 0 ; 
-        for (int i = 0 ; i < string.length() ; i++ ) {
-            if ( string.charAt(i) == chr ){
-                count++;
+    public static int[] allIndexOf(String string, char chr) {
+        int indexCount = 0; 
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {   
+                indexCount++;
             }
         }
-        int [] indx = new int [count] ;
-        int current = 0 ; 
-        for (int i = 0 ; i < string.length(); i++ ){
-            if (string.charAt(i) == chr ){
-                indx[current] = i ;
-                current++ ;
+    
+        int[] indexes = new int[indexCount];
+        int current = 0;
+    
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {
+                indexes[current] = i;
+                current++;
             }
         }
-        return indx;
+    
+        return indexes;
     }
 }
