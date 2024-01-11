@@ -1,7 +1,7 @@
 public class StringOps {
     ////////////////////////////////////////////////////////////
     //////                                               ///////
-    //////              Reminder:                        ///////
+    //////                Reminder:                      ///////
     //////        allowed methods                        ///////
     //////                                               ///////
     //////        1.charAt(int index)                    ///////
@@ -22,8 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
-    }
+    } 
 
     public static String capVowelsLowRest (String string) {
         // Write your code here:
@@ -47,31 +46,35 @@ public class StringOps {
         }
 
         return newBigStr;
-    } 
+    }
 
     public static String camelCase (String string) {
-        boolean nextUpperCase = false;
-        String camelCaseWord = "";
-    
-        for (int i = 0; i < string.length(); i++) {
-            char currentChar = string.charAt(i);
-    
-            if (currentChar >= 'A' && currentChar <= 'Z') {
-                camelCaseWord += (char) (currentChar + 32);  // Convert  to lowercase
-            } else if (currentChar == ' ') {
-                nextUpperCase = true;
-            } else {
-                if (nextUpperCase) {
-                    camelCaseWord += (char) (currentChar - 32);  // Convert vowels to uppercase
-                    nextUpperCase = false;
-                } else {
-                    camelCaseWord += currentChar;
-                }
+        String newStr1 = "" ;
+        String finalStr = "" ; 
+
+        for ( int i = 0 ; i < string.length() ; i++ ){
+            char newChar = string.charAt(i) ;
+            if ( newChar >= 'A' && newChar <= 'Z' ){
+                newChar += 32; 
             }
+            newStr1 += newChar ; 
+        } 
+        if (newStr1 != "" ){
+            finalStr += newStr1.charAt(0);
         }
-    
-        return camelCaseWord;
-    } 
+
+        for ( int j = 1 ; j < newStr1.length() ; j++ ){
+
+            char newCharfinal = newStr1.charAt(j - 1) ;
+            char newCharfinal1 = newStr1.charAt( j ) ; 
+            if (newCharfinal == ' ' && j != 1 || newCharfinal1 == ' ' && j != 1 ) {
+                newCharfinal1 -= 32 ;
+            } 
+            finalStr += newCharfinal1 ;
+        }
+
+        return finalStr;
+    }
 
     public static int[] allIndexOf (String string, char chr) {
         int count = 0 ; 
@@ -82,7 +85,6 @@ public class StringOps {
         }
         int [] indx = new int [count] ;
         int current = 0 ; 
-        
         for (int i = 0 ; i < string.length(); i++ ){
             if (string.charAt(i) == chr ){
                 indx[current] = i ;
